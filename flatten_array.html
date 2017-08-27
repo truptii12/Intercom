@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- This is the program written to flatten the array using Javascript and HTML5 -->
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+  <style type="text/css">
+	#mainContent {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: xx-large;
+		font-weight: bold;
+		background-color: #E3F0FB;
+		border-radius: 4px;
+		padding: 10px;
+		text-align: center;
+	}
+	.buttonStyle {
+		border-radius: 4px;
+		border: thin solid #F0E020;
+		padding: 5px;
+		background-color: #F8F094;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-weight: bold;
+		color: #663300;
+		width: 75px;
+	}
+
+	.buttonStyle:hover {
+		border: thin solid #FFCC00;
+		background-color: #FCF9D6;
+		color: #996633;
+		cursor: pointer;
+	}
+	.buttonStyle:active {
+		border: thin solid #99CC00;
+		background-color: #F5FFD2;
+		color: #669900;
+		cursor: pointer;
+	}
+
+  </style>
+</head>
+
+<body>
+	
+	<div id="mainContent">
+		<h2>See flattened array</h2>
+		<p id="helloText">[1,2,[3,4],5,[6,7,8,[0,10,11]]] </p>
+		<p id="array2">[1,2,[3,4],5] </p>
+		<button id="clickButton" class="buttonStyle">click me</button>
+	</div>
+	<script> 
+		var myButton = document.getElementById("clickButton");
+		var myText = document.getElementById("helloText");
+		var Text2 = document.getElementById("array2");
+
+		var data=[1,2,[3,4],5,[6,7,8,[0,10,11]]];
+		var data2=[1,2,[3,4],5];
+
+		myButton.addEventListener('click', doSomething, false);
+
+		function doSomething() 
+		{
+	
+				myText.textContent = flatten(data);
+				Text2.textContent= flatten(data2);
+		}
+
+		var flatten = function(arr)
+		{
+			var flatenMap=[];
+			arr.forEach(function(value)
+			{
+				if(Array.isArray(value))
+				{
+					flatenMap=flatenMap.concat(flatten(value));
+				}
+				else
+				{
+					flatenMap.push(value);
+				}
+			});
+			return flatenMap;
+		};
+
+	</script>
+
+</body>
+</html>
